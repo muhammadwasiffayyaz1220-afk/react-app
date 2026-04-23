@@ -14,9 +14,9 @@ export default function PolicyPage({ kind }) {
     <div className="bg-white text-slate-800 dark:bg-slate-950 dark:text-slate-100">
       <PageHero
         title={doc.title}
-        description="Legal information for visitors and wholesale partners using 4tex International."
+        description="Legal information for visitors and wholesale partners using wasitex."
       >
-        <PageHeroBreadcrumb delay={2} items={[{ label: 'Home', to: '/' }, { label: doc.title }]} />
+        <PageHeroBreadcrumb items={[{ label: 'Home', to: '/' }, { label: doc.title }]} />
       </PageHero>
 
       <section className="border-t border-slate-100 py-12 md:py-16 dark:border-slate-800">

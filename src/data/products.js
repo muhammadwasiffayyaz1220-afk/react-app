@@ -1,538 +1,272 @@
-import { categoryRoots } from './categoryTree.js'
-import { getShopLeafImage } from './categoryVisuals.js'
+const imageModules = import.meta.glob('../assets/imagesss/**/*.{jpg,jpeg,png,webp,avif}', {
+  eager: true,
+  import: 'default',
+})
 
-const u = (id) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=600&q=80`
-
-/** catMain / catMid / catLeaf match slugs in categoryTree.js */
-const seedProducts = [
-  {
-    slug: 'nova-oversized-hoodie',
-    name: 'NOVA OVERSIZED HOODIE',
-    blurb: 'Contemporary style with exceptional comfort. Roomy fit for layering; soft, durable fabric.',
-    catMain: 'casual-wear',
-    catMid: 'hoodies-sweats',
-    catLeaf: 'oversized-hoodies',
-    isNew: true,
-    isBestseller: false,
-    image: u('1556821840-3a63f95609a7'),
-    moq: 'In stock program',
-  },
-  {
-    slug: 'goat-oversized-hoodie',
-    name: 'GOAT OVERSIZED HOODIE',
-    blurb: 'Roomy fit and soft fabric for layering and all-day wear.',
-    catMain: 'casual-wear',
-    catMid: 'hoodies-sweats',
-    catLeaf: 'oversized-hoodies',
-    isNew: true,
-    isBestseller: false,
-    image: u('1556821840-3a63f95609a7'),
-    moq: 'In stock program',
-  },
-  {
-    slug: 'wave-oversized-hooded-varsity-jacket',
-    name: 'WAVE OVERSIZED HOODED VARSITY JACKET',
-    blurb: 'Relaxed silhouette with breathable fabric — versatile layering.',
-    catMain: 'casual-wear',
-    catMid: 'outerwear',
-    catLeaf: 'varsity-jackets',
-    isNew: true,
-    isBestseller: false,
-    image: u('1591047139829-d91aecb6caea'),
-    moq: 'In stock program',
-  },
-  {
-    slug: 'thread-theory-oversized-co-ord-set',
-    name: 'THREAD THEORY OVERSIZED CO-ORD SET',
-    blurb: 'Matching set with breathable fabric and polished oversized silhouette.',
-    catMain: 'casual-wear',
-    catMid: 'sets',
-    catLeaf: 'co-ord-sets',
-    isNew: true,
-    isBestseller: false,
-    image: u('1434389677669-e08b4cac3105'),
-    moq: 'In stock program',
-  },
-  {
-    slug: 'brown-cargo-trouser',
-    name: 'BROWN CARGO TROUSER',
-    blurb: 'Versatile cargo trousers — durable, breathable, well-fitting.',
-    catMain: 'casual-wear',
-    catMid: 'bottoms',
-    catLeaf: 'cargo-pants',
-    isNew: true,
-    isBestseller: false,
-    image: u('1542272604-787c3835535d'),
-    moq: 'In stock program',
-  },
-  {
-    slug: 'brown-oversized-basic-t-shirt',
-    name: 'BROWN OVERSIZED BASIC T-SHIRT',
-    blurb: 'Premium material with an oversized fit for maximum comfort.',
-    catMain: 'casual-wear',
-    catMid: 't-shirts',
-    catLeaf: 'oversized-tees',
-    isNew: true,
-    isBestseller: false,
-    image: u('1521572163474-6864f9cf17ab'),
-    moq: 'In stock program',
-  },
-  {
-    slug: 'alone-oversized-hoodie',
-    name: 'ALONE OVERSIZED HOODIE',
-    blurb: 'Relaxed fit for lounging or daily wear. DTF print. Unisex sizing.',
-    catMain: 'casual-wear',
-    catMid: 'hoodies-sweats',
-    catLeaf: 'oversized-hoodies',
-    isNew: true,
-    isBestseller: false,
-    image: u('1576566588028-4147f3842f27'),
-    moq: 'In stock program',
-  },
-  {
-    slug: 'green-varsity-jacket',
-    name: 'GREEN VARSITY JACKET',
-    blurb: 'Classic varsity vibe — comfort, style, and versatile statement piece.',
-    catMain: 'casual-wear',
-    catMid: 'outerwear',
-    catLeaf: 'varsity-jackets',
-    isNew: true,
-    isBestseller: false,
-    image: u('1594938298603-c8148c4dae35'),
-    moq: 'In stock program',
-  },
-  {
-    slug: 'black-essential-oversized-hoodie',
-    name: 'BLACK ESSENTIAL OVERSIZED HOODIE',
-    blurb: 'Soft durable fleece, spacious hood, kangaroo pockets.',
-    catMain: 'casual-wear',
-    catMid: 'hoodies-sweats',
-    catLeaf: 'pullover-hoodies',
-    isNew: false,
-    isBestseller: true,
-    image: u('1556821840-3a63f95609a7'),
-    moq: 'In stock program',
-  },
-  {
-    slug: 'skyfall-oversized-hoodie',
-    name: 'SKYFALL OVERSIZED HOODIE',
-    blurb: 'Bold relaxed fit, soft durable fabric, modern edge.',
-    catMain: 'casual-wear',
-    catMid: 'hoodies-sweats',
-    catLeaf: 'oversized-hoodies',
-    isNew: false,
-    isBestseller: true,
-    image: u('1556821840-3a63f95609a7'),
-    moq: 'In stock program',
-  },
-  {
-    slug: 'fireball-club-oversized-varsity-jacket',
-    name: 'FIREBALL CLUB OVERSIZED VARSITY JACKET',
-    blurb: 'Collegiate style with modern relaxed fit.',
-    catMain: 'casual-wear',
-    catMid: 'outerwear',
-    catLeaf: 'varsity-jackets',
-    isNew: false,
-    isBestseller: true,
-    image: u('1591047139829-d91aecb6caea'),
-    moq: 'In stock program',
-  },
-  {
-    slug: 'evolve-faux-leather-sleeves-varsity-jacket',
-    name: 'EVOLVE FAUX LEATHER SLEEVES VARSITY JACKET',
-    blurb: 'Faux leather sleeves with premium body fabric.',
-    catMain: 'casual-wear',
-    catMid: 'outerwear',
-    catLeaf: 'varsity-jackets',
-    isNew: false,
-    isBestseller: true,
-    image: u('1594938298603-c8148c4dae35'),
-    moq: 'In stock program',
-  },
-  {
-    slug: 'black-cargo-trouser',
-    name: 'BLACK CARGO TROUSER',
-    blurb: 'Terry cotton, six pockets — S through XL.',
-    catMain: 'casual-wear',
-    catMid: 'bottoms',
-    catLeaf: 'cargo-pants',
-    isNew: false,
-    isBestseller: true,
-    image: u('1542272604-787c3835535d'),
-    moq: 'In stock program',
-  },
-  {
-    slug: 'formula-01-oversized-hoodie',
-    name: 'FORMULA 01 OVERSIZED HOODIE',
-    blurb: 'High-quality materials, unique oversized design.',
-    catMain: 'casual-wear',
-    catMid: 'hoodies-sweats',
-    catLeaf: 'oversized-hoodies',
-    isNew: false,
-    isBestseller: true,
-    image: u('1576566588028-4147f3842f27'),
-    moq: 'In stock program',
-  },
-  {
-    slug: 'khaki-cargo-pant-elastic',
-    name: 'KHAKI CARGO PANT (ELASTIC)',
-    blurb: 'Elastic waistband, versatile khaki.',
-    catMain: 'casual-wear',
-    catMid: 'bottoms',
-    catLeaf: 'cargo-pants',
-    isNew: false,
-    isBestseller: true,
-    image: u('1517438476312-10d79c077509'),
-    moq: 'In stock program',
-  },
-  {
-    slug: 'spiderman-oversized-sweatshirt',
-    name: 'SPIDERMAN OVERSIZED SWEATSHIRT',
-    blurb: 'Soft oversized sweatshirt — relaxed on-trend look.',
-    catMain: 'casual-wear',
-    catMid: 'hoodies-sweats',
-    catLeaf: 'crewneck-sweatshirts',
-    isNew: false,
-    isBestseller: true,
-    image: u('1576566588028-4147f3842f27'),
-    moq: 'In stock program',
-  },
-  {
-    slug: 'timeless-block-oversized-hoodie',
-    name: 'TIMELESS BLOCK OVERSIZED HOODIE',
-    blurb: 'Classic meets modern comfort — roomy fit.',
-    catMain: 'casual-wear',
-    catMid: 'hoodies-sweats',
-    catLeaf: 'oversized-hoodies',
-    isNew: false,
-    isBestseller: true,
-    image: u('1556821840-3a63f95609a7'),
-    moq: 'In stock program',
-  },
-  {
-    slug: 'haku-oversized-t-shirt',
-    name: 'HAKU OVERSIZED T-SHIRT',
-    blurb: 'Trendy oversized fit, quality materials.',
-    catMain: 'casual-wear',
-    catMid: 't-shirts',
-    catLeaf: 'graphic-tees',
-    isNew: false,
-    isBestseller: false,
-    image: u('1503341504253-dff4815485f1'),
-    moq: 'In stock program',
-  },
-  {
-    slug: 'cotton-pajama-set-stripe',
-    name: 'CLASSIC STRIPE PAJAMA SET',
-    blurb: 'Soft cotton sleep set — relaxed fit.',
-    catMain: 'casual-wear',
-    catMid: 'sets',
-    catLeaf: 'loungewear-sets',
-    isNew: false,
-    isBestseller: false,
-    image: u('1515378791036-0648a3ef77b2'),
-    moq: 'In stock program',
-  },
-  {
-    slug: 'essential-tank-top',
-    name: 'ESSENTIAL TANK TOP',
-    blurb: 'Lightweight base layer for training or layering.',
-    catMain: 'active-wear',
-    catMid: 't-shirts',
-    catLeaf: 'tank-tops',
-    isNew: false,
-    isBestseller: false,
-    image: u('1503341450652-d658bbd34c5e'),
-    moq: 'In stock program',
-  },
-  {
-    slug: 'brono-oversized-shirt',
-    name: 'BRONO OVERSIZED SHIRT',
-    blurb: 'Breathable fabric, relaxed streetwear silhouette.',
-    catMain: 'casual-wear',
-    catMid: 'shirts',
-    catLeaf: 'casual-shirts',
-    isNew: false,
-    isBestseller: false,
-    image: u('1591047139829-d91aecb6caea'),
-    moq: 'In stock program',
-  },
-  {
-    slug: 'brown-essential-oversized-hoodie',
-    name: 'BROWN ESSENTIAL OVERSIZED HOODIE',
-    blurb: 'Soft fleece, kangaroo pocket.',
-    catMain: 'casual-wear',
-    catMid: 'hoodies-sweats',
-    catLeaf: 'pullover-hoodies',
-    isNew: false,
-    isBestseller: false,
-    image: u('1556821840-3a63f95609a7'),
-    moq: 'In stock program',
-  },
-  {
-    slug: 'porsche-oversized-hoodie',
-    name: 'PORSCHE OVERSIZED HOODIE',
-    blurb: 'Luxury-meets-comfort relaxed fit.',
-    catMain: 'casual-wear',
-    catMid: 'hoodies-sweats',
-    catLeaf: 'oversized-hoodies',
-    isNew: false,
-    isBestseller: false,
-    image: u('1556821840-3a63f95609a7'),
-    moq: 'In stock program',
-  },
-  {
-    slug: 'burnout-oversized-hoodie',
-    name: 'BURNOUT OVERSIZED HOODIE',
-    blurb: 'Roomy fit with premium fabric.',
-    catMain: 'casual-wear',
-    catMid: 'hoodies-sweats',
-    catLeaf: 'pullover-hoodies',
-    isNew: false,
-    isBestseller: false,
-    image: u('1576566588028-4147f3842f27'),
-    moq: 'In stock program',
-  },
-  {
-    slug: 'f1-oversized-hoodie',
-    name: 'F1 OVERSIZED HOODIE',
-    blurb: 'Generous sizing for layering.',
-    catMain: 'casual-wear',
-    catMid: 'hoodies-sweats',
-    catLeaf: 'oversized-hoodies',
-    isNew: false,
-    isBestseller: false,
-    image: u('1556821840-3a63f95609a7'),
-    moq: 'In stock program',
-  },
-  {
-    slug: 'frostline-fur-oversized-hoodie',
-    name: 'FROSTLINE FUR OVERSIZED HOODIE',
-    blurb: 'Plush lining for cold days.',
-    catMain: 'casual-wear',
-    catMid: 'hoodies-sweats',
-    catLeaf: 'pullover-hoodies',
-    isNew: false,
-    isBestseller: false,
-    image: u('1556821840-3a63f95609a7'),
-    moq: 'In stock program',
-  },
-  {
-    slug: 'revenge-oversized-t-shirt',
-    name: 'REVENGE OVERSIZED T-SHIRT',
-    blurb: 'Bold oversized fit, statement street graphic.',
-    catMain: 'casual-wear',
-    catMid: 't-shirts',
-    catLeaf: 'graphic-tees',
-    isNew: false,
-    isBestseller: false,
-    image: u('1503341504253-dff4815485f1'),
-    moq: 'In stock program',
-  },
-  {
-    slug: 'rise-above-oversized-t-shirt',
-    name: 'RISE ABOVE OVERSIZED T-SHIRT',
-    blurb: 'Oversized fit with bold lettering.',
-    catMain: 'casual-wear',
-    catMid: 't-shirts',
-    catLeaf: 'oversized-tees',
-    isNew: false,
-    isBestseller: false,
-    image: u('1521572163474-6864f9cf17ab'),
-    moq: 'In stock program',
-  },
-  {
-    slug: 'chapter-74-varsity-oversized-sweatshirt',
-    name: 'CHAPTER 74 VARSITY OVERSIZED SWEATSHIRT',
-    blurb: 'Varsity-inspired oversized sweat.',
-    catMain: 'casual-wear',
-    catMid: 'hoodies-sweats',
-    catLeaf: 'crewneck-sweatshirts',
-    isNew: false,
-    isBestseller: false,
-    image: u('1576566588028-4147f3842f27'),
-    moq: 'In stock program',
-  },
-  {
-    slug: 'legend-20-varsity-oversized-sweatshirt',
-    name: 'LEGEND 20 VARSITY OVERSIZED SWEATSHIRT',
-    blurb: 'Sport-inspired oversized sweatshirt.',
-    catMain: 'casual-wear',
-    catMid: 'hoodies-sweats',
-    catLeaf: 'graphic-sweatshirts',
-    isNew: false,
-    isBestseller: false,
-    image: u('1576566588028-4147f3842f27'),
-    moq: 'In stock program',
-  },
-  {
-    slug: 'rebel-code-sleeveless-varsity-jacket',
-    name: 'REBEL CODE SLEEVELESS VARSITY JACKET',
-    blurb: 'Modern sleeveless varsity — urban style.',
-    catMain: 'casual-wear',
-    catMid: 'outerwear',
-    catLeaf: 'varsity-jackets',
-    isNew: false,
-    isBestseller: false,
-    image: u('1591047139829-d91aecb6caea'),
-    moq: 'In stock program',
-  },
-  {
-    slug: 'fleece-pajama-bottoms',
-    name: 'FLEECE PAJAMA BOTTOMS',
-    blurb: 'Cozy fleece lounge bottom.',
-    catMain: 'casual-wear',
-    catMid: 'sets',
-    catLeaf: 'loungewear-sets',
-    isNew: false,
-    isBestseller: false,
-    image: u('1515378791036-0648a3ef77b2'),
-    moq: 'In stock program',
-  },
-  {
-    slug: 'linen-blend-shirt-timeless',
-    name: 'LINEN BLEND OVERSIZED SHIRT',
-    blurb: 'Lightweight blend for warm days.',
-    catMain: 'casual-wear',
-    catMid: 'shirts',
-    catLeaf: 'linen-shirts',
-    isNew: false,
-    isBestseller: false,
-    image: u('1591047139829-d91aecb6caea'),
-    moq: 'In stock program',
-  },
-  {
-    slug: 'pro-compression-half-sleeve',
-    name: 'PRO COMPRESSION HALF SLEEVE TEE',
-    blurb: 'Moisture-wicking compression for training blocks.',
-    catMain: 'active-wear',
-    catMid: 't-shirts',
-    catLeaf: 'compression-tees',
-    isNew: true,
-    isBestseller: false,
-    image: u('1571019613454-1cb2f99b2d8b'),
-    moq: 'In stock program',
-  },
-  {
-    slug: 'elite-training-leggings',
-    name: 'ELITE TRAINING LEGGINGS',
-    blurb: 'High-rise hold, squat-proof stretch.',
-    catMain: 'active-wear',
-    catMid: 'bottoms',
-    catLeaf: 'leggings',
-    isNew: false,
-    isBestseller: true,
-    image: u('1571902943202-b50787a0897e'),
-    moq: 'In stock program',
-  },
-  {
-    slug: 'velocity-tracksuit-set',
-    name: 'VELOCITY TRACKSUIT SET',
-    blurb: 'Matching jacket and pants for warm-ups.',
-    catMain: 'active-wear',
-    catMid: 'sets',
-    catLeaf: 'tracksuits',
-    isNew: false,
-    isBestseller: false,
-    image: u('1441986300917-64674bd600d8'),
-    moq: 'In stock program',
-  },
-  {
-    slug: 'club-soccer-kit-pro',
-    name: 'CLUB SOCCER KIT PRO',
-    blurb: 'Jersey and shorts set — sublimation-ready.',
+const folderMeta = {
+  'american football': {
     catMain: 'sports-wear',
     catMid: 'team-uniforms',
-    catLeaf: 'soccer-kits',
-    isNew: true,
-    isBestseller: true,
-    image: u('1574629810360-7efbbe195018'),
-    moq: 'In stock program',
+    catLeaf: 'american-football-uniforms',
+    title: 'American Football Uniform',
+    description: 'Game-day fit with strong paneling and team-ready detailing for custom club programs.',
+    color: '#B45309',
   },
-  {
-    slug: 'court-basketball-uniform',
-    name: 'COURT BASKETBALL UNIFORM',
-    blurb: 'Reversible option, breathable mesh body.',
+  'base football': {
+    catMain: 'sports-wear',
+    catMid: 'team-uniforms',
+    catLeaf: 'baseball-uniforms',
+    title: 'Baseball Uniform',
+    description: 'Breathable baseball silhouettes built for training, matches, and private-label production.',
+    color: '#1D4ED8',
+  },
+  'basket football': {
     catMain: 'sports-wear',
     catMid: 'team-uniforms',
     catLeaf: 'basketball-uniforms',
-    isNew: false,
-    isBestseller: false,
-    image: u('1521415978664-9de797bd773e'),
-    moq: 'In stock program',
+    title: 'Basketball Uniform',
+    description: 'Lightweight basketball kit options with motion-friendly cuts and sublimation readiness.',
+    color: '#EA580C',
   },
-  {
-    slug: 'diamond-cricket-whites',
-    name: 'DIAMOND CRICKET WHITES',
-    blurb: 'Lightweight whites, reinforced seams.',
+  bras: {
+    catMain: 'active-wear',
+    catMid: 'tops',
+    catLeaf: 'sports-bras',
+    title: 'Sports Bra',
+    description: 'Support-focused active tops designed for comfort, movement, and repeated training use.',
+    color: '#BE185D',
+  },
+  cricket: {
     catMain: 'sports-wear',
     catMid: 'team-uniforms',
     catLeaf: 'cricket-whites',
-    isNew: false,
-    isBestseller: false,
-    image: u('1521572163474-6864f9cf17ab'),
-    moq: 'In stock program',
+    title: 'Cricket Uniform',
+    description: 'Performance cricketwear with clean finishing, match comfort, and team branding support.',
+    color: '#0F766E',
   },
-  {
-    slug: 'interval-training-jersey',
-    name: 'INTERVAL TRAINING JERSEY',
-    blurb: 'Breathable paneling for drills and match prep.',
-    catMain: 'sports-wear',
-    catMid: 'training',
-    catLeaf: 'training-jerseys',
-    isNew: false,
-    isBestseller: false,
-    image: u('1571019613454-1cb2f99b2d8b'),
-    moq: 'In stock program',
-  },
-  {
-    slug: 'sprint-running-singlet',
-    name: 'SPRINT RUNNING SINGLET',
-    blurb: 'Minimal weight, laser-cut armholes.',
+  cycling: {
     catMain: 'sports-wear',
     catMid: 'running',
     catLeaf: 'running-singlets',
-    isNew: true,
-    isBestseller: false,
-    image: u('1503341450652-d658bbd34c5e'),
-    moq: 'In stock program',
+    title: 'Cycling Jersey',
+    description: 'Athletic cycling-inspired tops with technical cuts for endurance and training blocks.',
+    color: '#334155',
   },
-]
-
-function augmentMinProductsPerLeaf(seed) {
-  const list = [...seed]
-  const keyOf = (m, mid, l) => `${m}/${mid}/${l}`
-  const counts = new Map()
-  for (const p of list) {
-    const k = keyOf(p.catMain, p.catMid, p.catLeaf)
-    counts.set(k, (counts.get(k) || 0) + 1)
-  }
-  for (const root of categoryRoots) {
-    for (const mid of root.children) {
-      for (const leaf of mid.children) {
-        const k = keyOf(root.slug, mid.slug, leaf.slug)
-        const n = counts.get(k) || 0
-        for (let i = n; i < 3; i++) {
-          list.push({
-            slug: `stock-${root.slug}-${mid.slug}-${leaf.slug}-${i}`,
-            name: `${leaf.name.toUpperCase()} · PROGRAM ${i + 1}`,
-            blurb: `${mid.name} — ${leaf.name}. Club colours, embellishment & bulk tiers on request.`,
-            catMain: root.slug,
-            catMid: mid.slug,
-            catLeaf: leaf.slug,
-            isNew: false,
-            isBestseller: false,
-            image: getShopLeafImage(root.slug, mid.slug, leaf.slug),
-            moq: 'B2B program',
-          })
-        }
-      }
-    }
-  }
-  return list
+  golf: {
+    catMain: 'active-wear',
+    catMid: 't-shirts',
+    catLeaf: 'polo-shirts',
+    title: 'Golf Polo',
+    description: 'Smart golf silhouettes balancing breathable performance with premium presentation.',
+    color: '#166534',
+  },
+  hoodies: {
+    catMain: 'casual-wear',
+    catMid: 'hoodies-sweats',
+    catLeaf: 'oversized-hoodies',
+    title: 'Oversized Hoodie',
+    description: 'Streetwear-driven hoodie profiles with relaxed fits for custom brand programs.',
+    color: '#4F46E5',
+  },
+  'ice hockey': {
+    catMain: 'sports-wear',
+    catMid: 'outerwear',
+    catLeaf: 'sideline-jackets',
+    title: 'Ice Hockey Jacket',
+    description: 'Cold-condition outerwear styles made for team travel, bench use, and sideline identity.',
+    color: '#0369A1',
+  },
+  jackets: {
+    catMain: 'casual-wear',
+    catMid: 'outerwear',
+    catLeaf: 'bomber-jackets',
+    title: 'Bomber Jacket',
+    description: 'Outerwear staples with structured fits, layering comfort, and versatile branding options.',
+    color: '#7C3AED',
+  },
+  'jogger and pants': {
+    catMain: 'casual-wear',
+    catMid: 'bottoms',
+    catLeaf: 'casual-joggers',
+    title: 'Jogger and Pants',
+    description: 'Everyday bottoms with flexible comfort, clean finishing, and scalable B2B production.',
+    color: '#475569',
+  },
+  legging: {
+    catMain: 'active-wear',
+    catMid: 'bottoms',
+    catLeaf: 'leggings',
+    title: 'Training Legging',
+    description: 'Stretch-focused leggings built for mobility, gym performance, and all-day support.',
+    color: '#9333EA',
+  },
+  rugby: {
+    catMain: 'sports-wear',
+    catMid: 'training',
+    catLeaf: 'training-jerseys',
+    title: 'Rugby Jersey',
+    description: 'Durable rugby-inspired tops built for training intensity and team customization.',
+    color: '#B91C1C',
+  },
+  shorts: {
+    catMain: 'sports-wear',
+    catMid: 'bottoms',
+    catLeaf: 'athletic-shorts',
+    title: 'Athletic Short',
+    description: 'Movement-first shorts with breathable builds for sports programs and active ranges.',
+    color: '#0E7490',
+  },
+  soccer: {
+    catMain: 'sports-wear',
+    catMid: 'team-uniforms',
+    catLeaf: 'soccer-kits',
+    title: 'Soccer Kit',
+    description: 'Match-ready soccer sets designed for teams, academies, and wholesale club collections.',
+    color: '#15803D',
+  },
+  sweatshirt: {
+    catMain: 'casual-wear',
+    catMid: 'hoodies-sweats',
+    catLeaf: 'graphic-sweatshirts',
+    title: 'Sweatshirt',
+    description: 'Modern sweats with balanced structure and comfort for premium casual collections.',
+    color: '#7C2D12',
+  },
+  't-shirt': {
+    catMain: 'casual-wear',
+    catMid: 't-shirts',
+    catLeaf: 'graphic-tees',
+    title: 'Graphic T-Shirt',
+    description: 'Daily-wear tee options for private labels with print-ready surfaces and clean drape.',
+    color: '#2563EB',
+  },
+  'tank tops': {
+    catMain: 'active-wear',
+    catMid: 't-shirts',
+    catLeaf: 'tank-tops',
+    title: 'Tank Top',
+    description: 'Lightweight sleeveless styles optimized for fitness, training, and active layering.',
+    color: '#DB2777',
+  },
+  tennis: {
+    catMain: 'sports-wear',
+    catMid: 'training',
+    catLeaf: 'training-jerseys',
+    title: 'Tennis Jersey',
+    description: 'Court-focused apparel with lightweight construction and clean athletic aesthetics.',
+    color: '#CA8A04',
+  },
+  'varsity jackets': {
+    catMain: 'casual-wear',
+    catMid: 'outerwear',
+    catLeaf: 'varsity-jackets',
+    title: 'Varsity Jacket',
+    description: 'Classic varsity silhouettes upgraded for modern branding and wholesale runs.',
+    color: '#1E3A8A',
+  },
 }
 
-export const products = augmentMinProductsPerLeaf(seedProducts)
+const defaultMeta = {
+  catMain: 'casual-wear',
+  catMid: 't-shirts',
+  catLeaf: 'graphic-tees',
+  title: 'Custom Apparel',
+  description: 'Private-label apparel styles for sampling, merchandising, and bulk production.',
+  color: '#D4AF37',
+}
+
+function toSlug(value) {
+  return value
+    .toLowerCase()
+    .replace(/&/g, ' and ')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)+/g, '')
+}
+
+function toTitle(value) {
+  return value
+    .replace(/[_-]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .replace(/\b\w/g, (m) => m.toUpperCase())
+}
+
+function getFolderName(filePath) {
+  const normalized = filePath.replaceAll('\\', '/')
+  const parts = normalized.split('/')
+  return parts[parts.length - 2] || ''
+}
+
+function getFileStem(filePath) {
+  const normalized = filePath.replaceAll('\\', '/')
+  const fileName = normalized.split('/').pop() || ''
+  return fileName.replace(/\.[^.]+$/, '')
+}
+
+function normalizeFolderKey(folder) {
+  return folder.trim().toLowerCase().replace(/\s+/g, ' ')
+}
+
+function getCategoryMeta(folderName) {
+  const normalized = normalizeFolderKey(folderName)
+  if (normalized === 'sweatshirt' || normalized === 'sweatshirts' || normalized === 'sweat shirt') {
+    return folderMeta.sweatshirt
+  }
+  return folderMeta[normalized] || defaultMeta
+}
+
+const groupedImages = Object.entries(imageModules).reduce((acc, [filePath, imageSrc]) => {
+  const folder = getFolderName(filePath)
+  if (!folder) return acc
+  if (!acc[folder]) acc[folder] = []
+  acc[folder].push({ filePath, imageSrc })
+  return acc
+}, {})
+
+const sortedFolderNames = Object.keys(groupedImages).sort((a, b) => a.localeCompare(b))
+
+export const productCollections = sortedFolderNames.map((folderName) => {
+  const meta = getCategoryMeta(folderName)
+  const folderSlug = toSlug(folderName)
+  const items = [...groupedImages[folderName]]
+    .sort((a, b) => a.filePath.localeCompare(b.filePath, undefined, { numeric: true }))
+    .map((item, index) => {
+      const seq = index + 1
+      const imageLabel = toTitle(getFileStem(item.filePath))
+      const productTitle = `${meta.title} - ${imageLabel}`
+      const productBlurb = `${meta.description} Design reference: ${imageLabel}.`
+      return {
+        slug: `${folderSlug}-${seq}`,
+        name: productTitle.toUpperCase(),
+        displayName: productTitle,
+        blurb: productBlurb,
+        catMain: meta.catMain,
+        catMid: meta.catMid,
+        catLeaf: meta.catLeaf,
+        isNew: seq <= 2,
+        isBestseller: seq === 1,
+        image: item.imageSrc,
+        moq: 'B2B program',
+        folderName,
+        altText: `${productTitle} from ${toTitle(folderName)} collection`,
+        seoTitle: `${productTitle} | ${toTitle(folderName)} Collection`,
+        seoDescription: `${productBlurb} Explore ${toTitle(folderName)} style ${seq} for private label and wholesale orders.`,
+      }
+    })
+  return {
+    key: folderSlug,
+    folderName,
+    title: toTitle(folderName),
+    description: meta.description,
+    color: meta.color,
+    catMain: meta.catMain,
+    catMid: meta.catMid,
+    catLeaf: meta.catLeaf,
+    items,
+  }
+})
+
+export const products = productCollections.flatMap((collection) => collection.items)
 
 export function getProduct(slug) {
   return products.find((p) => p.slug === slug)

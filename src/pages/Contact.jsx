@@ -60,7 +60,7 @@ function IconWhatsApp({ className }) {
 }
 
 const inputClass =
-  'contact-input w-full rounded-xl border border-slate-200/90 bg-white px-4 py-3.5 text-[15px] text-slate-800 shadow-sm placeholder:text-slate-400 outline-none focus:border-[#A36783] focus:ring-2 focus:ring-[#A36783]/20 dark:border-slate-600 dark:bg-slate-800/90 dark:text-white dark:placeholder:text-slate-500'
+  'contact-input w-full rounded-xl border border-slate-200/90 bg-white px-4 py-3.5 text-[15px] text-slate-800 shadow-sm placeholder:text-slate-400 outline-none focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/20 dark:border-slate-600 dark:bg-slate-800/90 dark:text-white dark:placeholder:text-slate-500'
 
 const infoItems = [
   { icon: IconMail, label: 'Email', value: SITE_EMAIL, href: `mailto:${SITE_EMAIL}` },
@@ -118,7 +118,7 @@ export default function Contact() {
           onError={fallbackToHeroImage}
         />
         <div
-          className="absolute inset-0 z-[1] bg-gradient-to-br from-[#0f2238]/93 via-[#0a1628]/78 to-black/65"
+          className="absolute inset-0 z-[1] bg-gradient-to-br from-[#0F172A]/93 via-[#0a1628]/78 to-black/65"
           aria-hidden
         />
         <div
@@ -126,7 +126,7 @@ export default function Contact() {
           aria-hidden
         />
         <div
-          className="contact-hero-glow pointer-events-none absolute -right-16 top-1/4 z-[1] h-80 w-80 rounded-full bg-[#A36783]/28 blur-[100px]"
+          className="contact-hero-glow pointer-events-none absolute -right-16 top-1/4 z-[1] h-80 w-80 rounded-full bg-[#D4AF37]/28 blur-[100px]"
           aria-hidden
         />
         <div
@@ -138,12 +138,12 @@ export default function Contact() {
           aria-hidden
         />
         <div className="relative z-[2] mx-auto w-full max-w-6xl px-4 py-24 text-center md:px-6 md:text-left">
-          <p className="contact-anim-fade-up text-[11px] font-bold uppercase tracking-[0.32em] text-[#e8c4d4]">{SITE_NAME}</p>
+          <p className="contact-anim-fade-up text-[11px] font-bold uppercase tracking-[0.32em] text-[#FFFFFF]">{SITE_NAME}</p>
           <h1 className="contact-anim-fade-up contact-anim-delay-1 mt-4 text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">
             Contact Us
           </h1>
           <div
-            className="contact-hero-line mx-auto mt-6 h-1 w-20 rounded-full bg-gradient-to-r from-[#A36783] via-[#c9a0b5] to-[#f0d4e0] md:mx-0"
+            className="contact-hero-line mx-auto mt-6 h-1 w-20 rounded-full bg-gradient-to-r from-[#D4AF37] via-[#D4AF37] to-[#FFFFFF] md:mx-0"
             aria-hidden
           />
           <p className="contact-anim-fade-up contact-anim-delay-2 mx-auto mt-6 max-w-xl text-base leading-relaxed text-white/82 md:mx-0 md:text-lg">
@@ -157,24 +157,24 @@ export default function Contact() {
               Home
             </Link>
             <span className="text-white/40">/</span>
-            <span className="font-medium text-[#f0d4e0]">Contact</span>
+            <span className="font-medium text-[#FFFFFF]">Contact</span>
           </nav>
         </div>
       </section>
 
       <section className="relative overflow-hidden border-b border-slate-100 bg-gradient-to-b from-slate-50 via-white to-slate-50/80 py-16 md:py-28 dark:border-slate-800 dark:from-slate-950 dark:via-slate-950 dark:to-slate-900">
         <div
-          className="pointer-events-none absolute -right-32 top-24 h-72 w-72 rounded-full bg-[#A36783]/08 blur-[100px] dark:bg-[#A36783]/12"
+          className="pointer-events-none absolute -right-32 top-24 h-72 w-72 rounded-full bg-[#D4AF37]/08 blur-[100px] dark:bg-[#D4AF37]/12"
           aria-hidden
         />
         <div
-          className="pointer-events-none absolute bottom-0 left-0 h-48 w-48 rounded-full bg-[#0f2238]/06 blur-3xl dark:bg-white/[0.03]"
+          className="pointer-events-none absolute bottom-0 left-0 h-48 w-48 rounded-full bg-[#0F172A]/06 blur-3xl dark:bg-white/[0.03]"
           aria-hidden
         />
 
         <div className="relative mx-auto grid max-w-6xl gap-14 px-4 md:gap-20 md:px-6 lg:grid-cols-2 lg:items-start lg:gap-16">
           <div>
-            <p className="contact-anim-slide-left text-[11px] font-bold uppercase tracking-[0.28em] text-[#A36783]">
+            <p className="contact-anim-slide-left text-[11px] font-bold uppercase tracking-[0.28em] text-[#D4AF37]">
               Write to us
             </p>
             <h2 className="contact-anim-slide-left contact-anim-delay-1 mt-3 text-3xl font-bold tracking-tight text-slate-900 md:text-4xl dark:text-white">
@@ -191,7 +191,7 @@ export default function Contact() {
                   <div key={field.id} className="contact-field">
                     <label htmlFor={field.id} className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
                       {field.label}
-                      {field.required && <span className="text-[#A36783]"> *</span>}
+                      {field.required && <span className="text-[#D4AF37]"> *</span>}
                     </label>
                     <input
                       id={field.id}
@@ -207,7 +207,7 @@ export default function Contact() {
                 ))}
                 <div className="contact-field">
                   <label htmlFor="message" className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
-                    Message <span className="text-[#A36783]">*</span>
+                    Message <span className="text-[#D4AF37]">*</span>
                   </label>
                   <textarea
                     id="message"
@@ -223,7 +223,7 @@ export default function Contact() {
                 <div className="contact-field flex flex-col sm:flex-row sm:items-center sm:gap-6">
                   <button
                     type="submit"
-                    className="contact-btn-submit w-full rounded-xl bg-[#A36783] px-10 py-4 text-sm font-bold uppercase tracking-[0.2em] text-white shadow-lg shadow-[#A36783]/30 transition hover:bg-[#8a5570] sm:w-auto"
+                    className="contact-btn-submit w-full rounded-xl bg-[#D4AF37] px-10 py-4 text-sm font-bold uppercase tracking-[0.2em] text-[#0F172A] shadow-lg shadow-[#D4AF37]/30 transition duration-300 ease-out hover:bg-[#B8962E] hover:shadow-[0_0_28px_-4px_rgba(212,175,55,0.45)] sm:w-auto"
                   >
                     Send message
                   </button>
@@ -242,7 +242,7 @@ export default function Contact() {
 
           <div className="contact-anim-slide-right space-y-8">
             <div>
-              <p className="text-[11px] font-bold uppercase tracking-[0.28em] text-[#A36783]">Direct lines</p>
+              <p className="text-[11px] font-bold uppercase tracking-[0.28em] text-[#D4AF37]">Direct lines</p>
               <h3 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Reach us</h3>
               <p className="mt-2 max-w-md text-sm leading-relaxed text-slate-600 dark:text-slate-400">
                 Prefer chat? WhatsApp is fastest for quick questions. Email works best for specs and attachments.
@@ -275,10 +275,10 @@ export default function Contact() {
                 const Icon = item.icon
                 const inner = (
                   <>
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-[#A36783]/30 bg-[#A36783]/10 text-[#A36783] transition duration-300 group-hover/info:scale-105 group-hover/info:border-[#A36783]/50 group-hover/info:bg-[#A36783]/15">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-[#D4AF37]/30 bg-[#D4AF37]/10 text-[#D4AF37] transition duration-300 group-hover/info:scale-105 group-hover/info:border-[#D4AF37]/50 group-hover/info:bg-[#D4AF37]/15">
                       <Icon className="h-5 w-5" />
                     </div>
-                    <p className="mt-3 text-[10px] font-bold uppercase tracking-[0.2em] text-[#A36783]">{item.label}</p>
+                    <p className="mt-3 text-[10px] font-bold uppercase tracking-[0.2em] text-[#D4AF37]">{item.label}</p>
                     <p className="mt-1.5 text-sm font-semibold leading-snug text-slate-800 dark:text-slate-100">{item.value}</p>
                   </>
                 )
@@ -290,7 +290,7 @@ export default function Contact() {
                     {item.href ? (
                       <a
                         href={item.href}
-                        className="block outline-none focus-visible:ring-2 focus-visible:ring-[#A36783]/40 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-950"
+                        className="block outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]/40 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-950"
                         target={item.href.startsWith('http') ? '_blank' : undefined}
                         rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                       >
@@ -306,7 +306,7 @@ export default function Contact() {
 
             <div className="contact-map-frame overflow-hidden rounded-2xl border border-slate-200/90 shadow-[0_20px_40px_-16px_rgba(15,34,56,0.15)] ring-1 ring-slate-200/60 dark:border-slate-700 dark:shadow-black/40 dark:ring-slate-700/80">
               <iframe
-                title="4tex International — Sialkot"
+                title="wasitex — Sialkot"
                 className="h-[300px] w-full grayscale-[15%] contrast-[1.04] dark:grayscale-[25%]"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
@@ -324,7 +324,7 @@ export default function Contact() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={s.name}
-                    className="contact-social-btn flex h-12 w-12 items-center justify-center rounded-full bg-[#A36783] text-white shadow-lg shadow-[#A36783]/28 hover:-translate-y-0.5 hover:bg-[#8a5570] hover:shadow-xl active:translate-y-0"
+                    className="contact-social-btn flex h-12 w-12 items-center justify-center rounded-full bg-[#D4AF37] text-[#0F172A] shadow-lg shadow-[#D4AF37]/28 transition duration-300 ease-out hover:-translate-y-0.5 hover:bg-[#B8962E] hover:shadow-[0_0_26px_-2px_rgba(212,175,55,0.5)] active:translate-y-0"
                   >
                     <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden>
                       <path d={s.d} />

@@ -1,4 +1,4 @@
-/** Policy copy for 4tex International. */
+/** Policy copy for wasitex. */
 export const policies = {
   privacy: {
     title: 'Privacy Policy',
@@ -7,7 +7,7 @@ export const policies = {
       {
         type: 'p',
         text:
-          'At 4tex International, we are committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or make a purchase.',
+          'At wasitex, we are committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or make a purchase.',
       },
       { type: 'h2', text: 'Information We Collect' },
       {
@@ -77,7 +77,7 @@ export const policies = {
       { type: 'p', text: 'For privacy-related inquiries, please contact us:' },
       {
         type: 'ul',
-        items: ['Email: info@4texinternational.com', 'Factory 1 - Sialkot: Jay Ram Pur, Opp Eid Gah, Sialkot 51310', 'Factory 2 - Faisalabad: Raja Ghulam Rasool Nagar, Faisalabad 38000'],
+        items: ['Email: info@wasitex.com', 'Factory 1 - Sialkot: Jay Ram Pur, Opp Eid Gah, Sialkot 51310', 'Factory 2 - Faisalabad: Raja Ghulam Rasool Nagar, Faisalabad 38000'],
       },
     ],
   },
@@ -88,7 +88,7 @@ export const policies = {
       {
         type: 'p',
         text:
-          'Welcome to 4tex International. By accessing and using our website, you agree to be bound by these Terms of Service. Please read them carefully.',
+          'Welcome to wasitex. By accessing and using our website, you agree to be bound by these Terms of Service. Please read them carefully.',
       },
       { type: 'h2', text: 'Acceptance of Terms' },
       {
@@ -123,13 +123,13 @@ export const policies = {
       {
         type: 'p',
         text:
-          'All content on this website, including text, graphics, logos, images, and software, is the property of 4tex International and is protected by copyright and trademark laws.',
+          'All content on this website, including text, graphics, logos, images, and software, is the property of wasitex and is protected by copyright and trademark laws.',
       },
       { type: 'h2', text: 'Limitation of Liability' },
       {
         type: 'p',
         text:
-          '4tex International shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of this website or purchase of products.',
+          'wasitex shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of this website or purchase of products.',
       },
       { type: 'h2', text: 'Changes to Terms' },
       {
@@ -141,7 +141,7 @@ export const policies = {
       { type: 'p', text: 'For questions about these Terms of Service, please contact us:' },
       {
         type: 'ul',
-        items: ['Email: info@4texinternational.com', 'Factory 1 - Sialkot: Jay Ram Pur, Opp Eid Gah, Sialkot 51310', 'Factory 2 - Faisalabad: Raja Ghulam Rasool Nagar, Faisalabad 38000'],
+        items: ['Email: info@wasitex.com', 'Factory 1 - Sialkot: Jay Ram Pur, Opp Eid Gah, Sialkot 51310', 'Factory 2 - Faisalabad: Raja Ghulam Rasool Nagar, Faisalabad 38000'],
       },
     ],
   },
@@ -187,7 +187,7 @@ export const policies = {
       { type: 'p', text: 'For shipping inquiries, please contact us:' },
       {
         type: 'ul',
-        items: ['Email: info@4texinternational.com', 'Factory 1 - Sialkot: Jay Ram Pur, Opp Eid Gah, Sialkot 51310', 'Factory 2 - Faisalabad: Raja Ghulam Rasool Nagar, Faisalabad 38000'],
+        items: ['Email: info@wasitex.com', 'Factory 1 - Sialkot: Jay Ram Pur, Opp Eid Gah, Sialkot 51310', 'Factory 2 - Faisalabad: Raja Ghulam Rasool Nagar, Faisalabad 38000'],
       },
     ],
   },

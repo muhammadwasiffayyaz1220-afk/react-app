@@ -15,10 +15,10 @@ import { fallbackToHeroImage } from '../data/siteHero.js'
 import NotFound from './NotFound'
 
 const deptCardClass =
-  'group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-sm transition duration-300 hover:-translate-y-0.5 hover:border-[#A36783]/35 hover:shadow-lg dark:border-slate-700 dark:bg-slate-900/40 dark:hover:border-[#A36783]/40'
+  'group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-sm transition duration-300 hover:-translate-y-0.5 hover:border-[#D4AF37]/35 hover:shadow-lg dark:border-slate-700 dark:bg-slate-900/40 dark:hover:border-[#D4AF37]/40'
 
 const leafCardClass =
-  'group flex items-center gap-3.5 rounded-xl border border-slate-200/80 bg-white p-3 pr-4 text-left shadow-sm ring-1 ring-black/[0.02] transition hover:border-[#A36783]/35 hover:shadow-md dark:border-slate-700 dark:bg-slate-900/50 dark:ring-white/[0.03] dark:hover:border-[#A36783]/40'
+  'group flex items-center gap-3.5 rounded-xl border border-slate-200/80 bg-white p-3 pr-4 text-left shadow-sm ring-1 ring-black/[0.02] transition hover:border-[#D4AF37]/35 hover:shadow-md dark:border-slate-700 dark:bg-slate-900/50 dark:ring-white/[0.03] dark:hover:border-[#D4AF37]/40'
 
 export default function ShopCategory() {
   const { main, mid, leaf } = useParams()
@@ -78,7 +78,7 @@ export default function ShopCategory() {
   return (
     <div className="bg-white text-slate-800 dark:bg-slate-950 dark:text-slate-100">
       <PageHero title={title} description={heroDescription}>
-        <PageHeroBreadcrumb delay={2} items={breadcrumbItems} />
+        <PageHeroBreadcrumb items={breadcrumbItems} />
       </PageHero>
 
       <section className="border-t border-slate-100 py-10 md:py-14 dark:border-slate-800">
@@ -96,7 +96,7 @@ export default function ShopCategory() {
             {!mid && (
               <>
                 <div className="rounded-2xl border border-slate-100 bg-slate-50/60 px-5 py-6 dark:border-slate-800 dark:bg-slate-900/35 md:px-7 md:py-7">
-                  <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#A36783]">Departments</p>
+                  <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#D4AF37]">Departments</p>
                   <h2 className="mt-1.5 text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Choose a category</h2>
                   <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-600 dark:text-slate-400">{root.tagline}</p>
                 </div>
@@ -114,7 +114,7 @@ export default function ShopCategory() {
                             onError={fallbackToHeroImage}
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
-                          <span className="absolute left-4 top-4 rounded-full bg-white/90 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-[#A36783] shadow-sm backdrop-blur-sm dark:bg-slate-900/80">
+                          <span className="absolute left-4 top-4 rounded-full bg-white/90 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-[#D4AF37] shadow-sm backdrop-blur-sm dark:bg-slate-900/80">
                             Department
                           </span>
                         </div>
@@ -123,7 +123,7 @@ export default function ShopCategory() {
                           <p className="mt-1.5 text-sm text-slate-500 dark:text-slate-400">
                             {m.children.length} product types
                           </p>
-                          <span className="mt-5 inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-[#A36783]">
+                          <span className="mt-5 inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-[#D4AF37]">
                             Open
                             <span aria-hidden className="transition group-hover:translate-x-0.5">
                               →
@@ -140,11 +140,11 @@ export default function ShopCategory() {
             {mid && !leaf && midNode && (
               <>
                 <div className="rounded-2xl border border-slate-100 bg-slate-50/60 px-5 py-6 dark:border-slate-800 dark:bg-slate-900/35 md:px-7 md:py-7">
-                  <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#A36783]">Product types</p>
+                  <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#D4AF37]">Product types</p>
                   <h2 className="mt-1.5 text-2xl font-bold tracking-tight text-slate-900 dark:text-white">{midNode.name}</h2>
                   <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
                     Part of{' '}
-                    <Link className="font-semibold text-[#A36783] hover:underline" to={buildShopPath(main)}>
+                    <Link className="font-semibold text-[#D4AF37] hover:underline" to={buildShopPath(main)}>
                       {root.name}
                     </Link>
                   </p>
@@ -167,7 +167,7 @@ export default function ShopCategory() {
                           {l.name}
                         </span>
                         <span
-                          className="shrink-0 text-lg leading-none text-slate-300 transition group-hover:translate-x-0.5 group-hover:text-[#A36783] dark:text-slate-600"
+                          className="shrink-0 text-lg leading-none text-slate-300 transition group-hover:translate-x-0.5 group-hover:text-[#D4AF37] dark:text-slate-600"
                           aria-hidden
                         >
                           →
@@ -179,7 +179,7 @@ export default function ShopCategory() {
                 {products.length > 0 && (
                   <div className="mt-12 rounded-2xl border border-slate-100 bg-slate-50/40 p-5 dark:border-slate-800 dark:bg-slate-900/25 md:mt-14 md:p-8">
                     <div className="border-b border-slate-200/80 pb-5 dark:border-slate-700/80">
-                      <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#A36783]">Line sheet</p>
+                      <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#D4AF37]">Line sheet</p>
                       <h3 className="mt-1 text-lg font-bold text-slate-900 dark:text-white md:text-xl">All styles in this section</h3>
                       <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{products.length} in catalogue</p>
                     </div>
@@ -197,11 +197,11 @@ export default function ShopCategory() {
               <>
                 <div className="rounded-2xl border border-slate-100 bg-slate-50/60 px-5 py-6 dark:border-slate-800 dark:bg-slate-900/35 md:px-7 md:py-7">
                   <p className="text-sm text-slate-600 dark:text-slate-400">
-                    <Link className="font-semibold text-[#A36783] hover:underline" to={buildShopPath(main)}>
+                    <Link className="font-semibold text-[#D4AF37] hover:underline" to={buildShopPath(main)}>
                       {root.name}
                     </Link>
                     <span className="mx-2 text-slate-300 dark:text-slate-600">/</span>
-                    <Link className="font-semibold text-[#A36783] hover:underline" to={buildShopPath(main, mid)}>
+                    <Link className="font-semibold text-[#D4AF37] hover:underline" to={buildShopPath(main, mid)}>
                       {midNode.name}
                     </Link>
                   </p>

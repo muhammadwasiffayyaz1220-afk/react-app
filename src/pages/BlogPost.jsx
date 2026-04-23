@@ -24,14 +24,13 @@ export default function BlogPost() {
     <div className="bg-white text-slate-800 dark:bg-slate-950 dark:text-slate-100">
       <PageHero title={post.title} description={`${post.publishedAt} · ${post.author}`}>
         <PageHeroBreadcrumb
-          delay={2}
           items={[{ label: 'Home', to: '/' }, { label: 'Blog', to: '/blog' }, { label: 'Article' }]}
         />
       </PageHero>
 
       <article className="border-t border-slate-100 py-12 md:py-16 dark:border-slate-800">
         <div className="mx-auto max-w-3xl px-4 text-left md:px-6">
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#A36783]">{post.category}</p>
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#D4AF37]">{post.category}</p>
           <div className="mt-8 overflow-hidden rounded-xl border border-slate-200 shadow-sm dark:border-slate-700">
             <img
               src={post.image}
@@ -57,7 +56,7 @@ export default function BlogPost() {
           </div>
           <Link
             to="/blog"
-            className="mt-12 inline-flex items-center text-sm font-bold uppercase tracking-wider text-[#A36783] hover:underline"
+            className="mt-12 inline-flex items-center text-sm font-bold uppercase tracking-wider text-[#D4AF37] hover:underline"
           >
             ← Back to blog
           </Link>

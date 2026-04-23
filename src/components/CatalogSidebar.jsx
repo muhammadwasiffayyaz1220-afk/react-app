@@ -7,8 +7,8 @@ const panelClass =
   'rounded-2xl border border-slate-200/90 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-900/50'
 
 const linkBase = 'block rounded-lg px-3 py-2.5 text-sm transition dark:text-slate-200'
-const linkIdle = `${linkBase} text-slate-700 hover:bg-slate-50 hover:text-[#A36783] dark:hover:bg-white/5`
-const linkActive = `${linkBase} bg-[#A36783]/12 font-semibold text-[#A36783]`
+const linkIdle = `${linkBase} text-[#0F172A] hover:bg-slate-50 hover:text-[#D4AF37] dark:text-slate-200 dark:hover:bg-white/5`
+const linkActive = `${linkBase} bg-[#D4AF37]/12 font-semibold text-[#D4AF37]`
 
 const sectionLabel = 'text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400 dark:text-slate-500'
 
@@ -45,7 +45,7 @@ function CatalogSidebarSearch({ initialQ, isProductsPage, navigate, params, setP
         value={searchDraft}
         onChange={(e) => setSearchDraft(e.target.value)}
         placeholder="Search styles…"
-        className="w-full rounded-lg border border-slate-200 bg-slate-50/80 px-3 py-2.5 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:border-[#A36783] focus:bg-white focus:ring-1 focus:ring-[#A36783]/25 dark:border-slate-600 dark:bg-slate-800/80 dark:text-white dark:placeholder:text-slate-500"
+        className="w-full rounded-lg border border-slate-200 bg-slate-50/80 px-3 py-2.5 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:border-[#D4AF37] focus:bg-white focus:ring-1 focus:ring-[#D4AF37]/25 dark:border-slate-600 dark:bg-slate-800/80 dark:text-white dark:placeholder:text-slate-500"
       />
       <button
         type="submit"
@@ -101,8 +101,8 @@ export default function CatalogSidebar({
           to="/products"
           className={`rounded-full border px-3 py-1.5 text-xs font-semibold ${
             isProductsPage && !filter && !qParam
-              ? 'border-[#A36783] bg-[#A36783]/10 text-[#A36783]'
-              : 'border-slate-200 text-slate-600 hover:border-[#A36783]/40 dark:border-slate-600 dark:text-slate-300'
+              ? 'border-[#D4AF37] bg-[#D4AF37]/10 text-[#D4AF37]'
+              : 'border-slate-200 text-slate-600 hover:border-[#D4AF37]/40 dark:border-slate-600 dark:text-slate-300'
           }`}
         >
           All ({totalCount})
@@ -111,8 +111,8 @@ export default function CatalogSidebar({
           to="/products?filter=new"
           className={`rounded-full border px-3 py-1.5 text-xs font-semibold ${
             isProductsPage && newOnly
-              ? 'border-[#A36783] bg-[#A36783]/10 text-[#A36783]'
-              : 'border-slate-200 text-slate-600 hover:border-[#A36783]/40 dark:border-slate-600 dark:text-slate-300'
+              ? 'border-[#D4AF37] bg-[#D4AF37]/10 text-[#D4AF37]'
+              : 'border-slate-200 text-slate-600 hover:border-[#D4AF37]/40 dark:border-slate-600 dark:text-slate-300'
           }`}
         >
           New
@@ -121,8 +121,8 @@ export default function CatalogSidebar({
           to="/products?filter=bestseller"
           className={`rounded-full border px-3 py-1.5 text-xs font-semibold ${
             isProductsPage && bestseller
-              ? 'border-[#A36783] bg-[#A36783]/10 text-[#A36783]'
-              : 'border-slate-200 text-slate-600 hover:border-[#A36783]/40 dark:border-slate-600 dark:text-slate-300'
+              ? 'border-[#D4AF37] bg-[#D4AF37]/10 text-[#D4AF37]'
+              : 'border-slate-200 text-slate-600 hover:border-[#D4AF37]/40 dark:border-slate-600 dark:text-slate-300'
           }`}
         >
           Best sellers
@@ -131,8 +131,8 @@ export default function CatalogSidebar({
           to="/products?sort=az"
           className={`rounded-full border px-3 py-1.5 text-xs font-semibold ${
             isProductsPage && sortAz && !filter
-              ? 'border-[#A36783] bg-[#A36783]/10 text-[#A36783]'
-              : 'border-slate-200 text-slate-600 hover:border-[#A36783]/40 dark:border-slate-600 dark:text-slate-300'
+              ? 'border-[#D4AF37] bg-[#D4AF37]/10 text-[#D4AF37]'
+              : 'border-slate-200 text-slate-600 hover:border-[#D4AF37]/40 dark:border-slate-600 dark:text-slate-300'
           }`}
         >
           A–Z
@@ -209,7 +209,7 @@ export default function CatalogSidebar({
       )}
 
       <div className="mt-6 border-t border-slate-100 pt-4 dark:border-slate-700">
-        <Link to="/categories" className="text-xs font-bold uppercase tracking-wider text-[#A36783] hover:underline">
+        <Link to="/categories" className="text-xs font-bold uppercase tracking-wider text-[#D4AF37] hover:underline">
           Category overview →
         </Link>
       </div>

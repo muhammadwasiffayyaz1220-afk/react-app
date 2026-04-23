@@ -1,11 +1,14 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom'
+import { AnimatePresence, motion as M, useReducedMotion } from 'framer-motion'
+import { Link, NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
+import ScrollToTop from './ScrollToTop'
+import { pageTransitionProps } from '../motion/presets'
 import CornerDecor from './CornerDecor'
 import { categoryRoots, buildShopPath } from '../data/categoryTree'
 import { countForCatMain } from '../data/products'
 import {
   SITE_EMAIL,
-  SITE_LOGO_LETTER,
+  SITE_LOGO_IMAGE,
   SITE_NAME,
   SITE_WHATSAPP_DISPLAY,
   SITE_WHATSAPP_URL,
@@ -14,7 +17,10 @@ import {
 } from '../data/siteBrand'
 
 export default function Layout() {
+  const location = useLocation()
   const navigate = useNavigate()
+  const reduceMotion = useReducedMotion()
+  const pageMotion = pageTransitionProps(reduceMotion)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [megaOpen, setMegaOpen] = useState(false)
   const [searchQ, setSearchQ] = useState('')
@@ -39,42 +45,68 @@ export default function Layout() {
   }
 
   const navClass = ({ isActive }) =>
-    `relative rounded-md px-1.5 py-1 text-sm font-medium transition ${
+    `relative rounded-md px-1.5 py-1 text-sm font-medium transition duration-300 ease-out ${
       isActive
-        ? 'text-[#f0d4e0] after:absolute after:inset-x-1 after:-bottom-1 after:h-0.5 after:rounded-full after:bg-[#A36783]'
-        : 'text-white/85 hover:bg-white/[0.06] hover:text-white'
+        ? 'text-[#0F172A] after:absolute after:inset-x-1 after:-bottom-1 after:h-0.5 after:rounded-full after:bg-[#D4AF37]'
+        : 'text-[#334155] hover:bg-slate-100 hover:text-[#D4AF37]'
     }`
 
   return (
-    <div className="relative min-h-screen bg-white font-sans text-slate-900 antialiased dark:!bg-white dark:text-slate-900">
+    <div className="relative min-h-screen bg-[#FFFFFF] font-sans text-slate-900 antialiased dark:!bg-[#FFFFFF] dark:text-slate-900">
       <CornerDecor />
+      <ScrollToTop />
 
       <header
         ref={headerRef}
-        className="sticky top-0 z-50 w-full border-b border-slate-800/90 bg-[#0f2238]/98 shadow-lg shadow-black/20 backdrop-blur-md backdrop-saturate-150 supports-[backdrop-filter]:bg-[#0f2238]/92"
+        className="sticky top-0 z-50 w-full border-b border-slate-200/90 bg-white shadow-sm shadow-slate-900/[0.04]"
         onMouseLeave={() => setMegaOpen(false)}
       >
-        <div className="border-b border-white/10 bg-[#112a45]">
-          <div className="mx-auto hidden max-w-6xl items-center justify-between px-4 py-2 text-xs text-white/75 md:flex md:px-6">
-            <div className="flex items-center gap-6">
-              <a href={SITE_WHATSAPP_URL} className="transition hover:text-white" target="_blank" rel="noopener noreferrer">
+        <div className="border-b border-white/10 bg-[#0F172A]">
+          <div className="mx-auto flex max-w-6xl flex-col gap-1.5 px-4 py-2.5 text-[11px] text-slate-300 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:text-xs md:px-6">
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-1">
+              <a
+                href={SITE_WHATSAPP_URL}
+                className="font-medium text-slate-200 transition duration-300 ease-out hover:text-[#D4AF37]"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 WhatsApp {SITE_WHATSAPP_DISPLAY}
               </a>
-              <a href={`mailto:${SITE_EMAIL}`} className="transition hover:text-white">
+              <a
+                href={`mailto:${SITE_EMAIL}`}
+                className="font-medium text-slate-200 transition duration-300 ease-out hover:text-[#D4AF37]"
+              >
                 {SITE_EMAIL}
               </a>
             </div>
-            <p>Jay Ram Pur, Opp Eid Gah, Sialkot 51310</p>
+            <p className="text-slate-400 sm:text-right">Jay Ram Pur, Opp Eid Gah, Sialkot 51310</p>
           </div>
         </div>
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 md:px-6">
-          <Link to="/" className="group flex shrink-0 items-center gap-2.5">
-            <span className="flex h-10 w-10 items-center justify-center rounded-full border border-[#A36783]/50 bg-[#132a43] text-lg font-black text-[#cf9bb4]">
-              {SITE_LOGO_LETTER}
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3.5 md:px-6 md:py-4">
+          <Link
+            to="/"
+            aria-label={`${SITE_NAME} — Home`}
+            className="nav-brand-lockup nav-brand-lockup--light group flex shrink-0 items-center gap-3.5 rounded-xl py-0.5 pr-0.5 outline-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37] focus-visible:ring-offset-2 focus-visible:ring-offset-white md:gap-4"
+          >
+            <span className="nav-brand-mark relative isolate flex h-16 min-w-[4rem] shrink-0 items-center justify-center md:h-[4.25rem] md:min-w-[4.5rem]">
+              <img
+                src={SITE_LOGO_IMAGE}
+                alt=""
+                width={220}
+                height={72}
+                className="relative z-[1] h-11 w-auto max-h-[3.15rem] max-w-[min(14rem,54vw)] object-contain object-center md:h-[3.35rem] md:max-h-[3.5rem] md:max-w-[min(16rem,40vw)]"
+                decoding="async"
+                fetchPriority="high"
+              />
             </span>
-            <span className="text-xl font-bold tracking-tight">
-              <span className="text-[#cf9bb4]">{SITE_WORDMARK_FIRST}</span>
-              <span className="text-white">{SITE_WORDMARK_SECOND}</span>
+            <span className="grid w-max max-w-full min-w-0 justify-items-stretch">
+              <span className="nav-brand-wordmark col-start-1 row-start-1 justify-self-start text-[1.2rem] uppercase leading-none md:text-[1.45rem]">
+                <span className="nav-brand-wordmark-text">
+                  {SITE_WORDMARK_FIRST}
+                  {SITE_WORDMARK_SECOND}
+                </span>
+              </span>
+              <span className="nav-brand-wordmark-line col-start-1 row-start-2 min-w-0" aria-hidden />
             </span>
           </Link>
 
@@ -89,8 +121,10 @@ export default function Layout() {
             <div className="relative" onMouseEnter={() => setMegaOpen(true)}>
               <button
                 type="button"
-                className={`flex items-center gap-1 text-sm font-medium ${
-                  megaOpen ? 'text-[#A36783]' : 'text-white/85 hover:text-white'
+                className={`flex items-center gap-1 rounded-md border px-3 py-1.5 text-sm font-medium transition duration-300 ease-out ${
+                  megaOpen
+                    ? 'border-[#D4AF37] bg-[#D4AF37]/12 text-[#0F172A]'
+                    : 'border-slate-200 text-[#0F172A] hover:border-[#D4AF37]/60 hover:bg-[#D4AF37]/8 hover:text-[#0F172A]'
                 }`}
                 aria-expanded={megaOpen}
                 aria-haspopup="true"
@@ -120,9 +154,13 @@ export default function Layout() {
                     value={searchQ}
                     onChange={(e) => setSearchQ(e.target.value)}
                     placeholder="Search products…"
-                    className="w-44 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-900 outline-none focus:border-[#A36783]/50 md:w-56 dark:border-white/15 dark:bg-[#1c2129] dark:text-white"
+                    className="w-44 rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm text-[#0F172A] outline-none placeholder:text-slate-400 focus:border-[#D4AF37] focus:bg-white focus:ring-1 focus:ring-[#D4AF37]/30 md:w-56"
                   />
-                  <button type="submit" className="rounded-full p-2 text-[#c99cb2] hover:bg-white/10" aria-label="Search">
+                  <button
+                    type="submit"
+                    className="rounded-full bg-[#D4AF37] p-2 text-[#0F172A] shadow-sm transition duration-300 ease-out hover:bg-[#B8962E] hover:shadow-[0_0_20px_-4px_rgba(212,175,55,0.45)] active:scale-[0.97]"
+                    aria-label="Search"
+                  >
                     <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
@@ -132,7 +170,7 @@ export default function Layout() {
                 <button
                   type="button"
                   onClick={() => setSearchOpen(true)}
-                  className="rounded-full p-2.5 text-white/75 hover:bg-white/10 hover:text-[#cf9bb4]"
+                  className="rounded-full bg-[#D4AF37] p-2.5 text-[#0F172A] shadow-sm transition duration-300 ease-out hover:bg-[#B8962E] hover:shadow-[0_0_20px_-4px_rgba(212,175,55,0.45)] active:scale-[0.97]"
                   aria-label="Open search"
                 >
                   <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -143,7 +181,7 @@ export default function Layout() {
             </div>
             <button
               type="button"
-              className="rounded-lg border border-white/20 p-2 text-white lg:hidden"
+              className="rounded-lg bg-[#D4AF37] p-2 text-[#0F172A] shadow-sm transition duration-300 ease-out hover:bg-[#B8962E] hover:shadow-[0_0_20px_-4px_rgba(212,175,55,0.45)] active:scale-[0.97] lg:hidden"
               aria-label="Menu"
               onClick={() => setMobileOpen(true)}
             >
@@ -162,14 +200,14 @@ export default function Layout() {
             <div className="mx-auto max-w-7xl px-6 py-8">
               <div className="flex flex-col gap-4 border-b border-slate-200/80 pb-5 sm:flex-row sm:items-end sm:justify-between">
                 <div>
-                  <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#A36783]">Catalogue</p>
+                  <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#D4AF37]">Catalogue</p>
                   <p className="mt-1 text-lg font-bold text-slate-900">Shop by category</p>
                   <p className="mt-1 text-sm text-slate-500">All departments and product types — same structure as the shop.</p>
                 </div>
                 <div className="flex shrink-0 flex-wrap gap-3 text-sm">
                   <Link
                     to="/categories"
-                    className="font-semibold text-[#A36783] hover:underline"
+                    className="font-semibold text-[#D4AF37] hover:underline"
                     onClick={() => setMegaOpen(false)}
                   >
                     Category overview
@@ -177,7 +215,7 @@ export default function Layout() {
                   <span className="hidden text-slate-300 sm:inline">|</span>
                   <Link
                     to="/products"
-                    className="font-semibold text-slate-600 hover:text-[#A36783]"
+                    className="font-semibold text-slate-600 hover:text-[#D4AF37]"
                     onClick={() => setMegaOpen(false)}
                   >
                     All products
@@ -195,7 +233,7 @@ export default function Layout() {
                       className="group block"
                       onClick={() => setMegaOpen(false)}
                     >
-                      <span className="text-base font-bold text-slate-900 group-hover:text-[#A36783]">{root.name}</span>
+                      <span className="text-base font-bold text-slate-900 group-hover:text-[#D4AF37]">{root.name}</span>
                       <span className="mt-0.5 block text-xs leading-relaxed text-slate-500">{root.tagline}</span>
                       <span className="mt-1 inline-block text-xs font-semibold tabular-nums text-slate-400">
                         {countForCatMain(root.slug)} styles
@@ -206,7 +244,7 @@ export default function Layout() {
                         <div key={mid.slug}>
                           <Link
                             to={buildShopPath(root.slug, mid.slug)}
-                            className="text-[13px] font-bold uppercase tracking-wide text-slate-800 hover:text-[#A36783]"
+                            className="text-[13px] font-bold uppercase tracking-wide text-[#0F172A] hover:text-[#D4AF37]"
                             onClick={() => setMegaOpen(false)}
                           >
                             {mid.name}
@@ -216,7 +254,7 @@ export default function Layout() {
                               <li key={leaf.slug}>
                                 <Link
                                   to={buildShopPath(root.slug, mid.slug, leaf.slug)}
-                                  className="block rounded-md py-0.5 pl-1 text-[13px] leading-snug text-slate-600 transition hover:bg-slate-50 hover:text-[#A36783]"
+                                  className="block rounded-md py-0.5 pl-1 text-[13px] leading-snug text-[#334155] transition hover:bg-slate-50 hover:text-[#D4AF37]"
                                   onClick={() => setMegaOpen(false)}
                                 >
                                   {leaf.name}
@@ -265,7 +303,7 @@ export default function Layout() {
                 onClick={() => setMobileCatsOpen((v) => !v)}
                 aria-expanded={mobileCatsOpen}
               >
-                <span className="text-[#A36783]">Categories</span>
+                <span className="text-[#D4AF37]">Categories</span>
                 <svg
                   className={`h-4 w-4 shrink-0 transition ${mobileCatsOpen ? 'rotate-180' : ''}`}
                   fill="none"
@@ -281,7 +319,7 @@ export default function Layout() {
                     <div key={root.slug} className="border-b border-slate-200/80 pb-3 last:border-0 last:pb-0 dark:border-white/10">
                       <Link
                         to={buildShopPath(root.slug)}
-                        className="block text-sm font-bold text-slate-900 hover:text-[#A36783] dark:text-white"
+                        className="block text-sm font-bold text-slate-900 hover:text-[#D4AF37] dark:text-white"
                         onClick={() => setMobileOpen(false)}
                       >
                         {root.name}
@@ -292,7 +330,7 @@ export default function Layout() {
                           <div key={mid.slug}>
                             <Link
                               to={buildShopPath(root.slug, mid.slug)}
-                              className="text-xs font-bold uppercase tracking-wide text-slate-800 hover:text-[#A36783] dark:text-white/90"
+                              className="text-xs font-bold uppercase tracking-wide text-slate-800 hover:text-[#D4AF37] dark:text-white/90"
                               onClick={() => setMobileOpen(false)}
                             >
                               {mid.name}
@@ -302,7 +340,7 @@ export default function Layout() {
                                 <li key={leaf.slug}>
                                   <Link
                                     to={buildShopPath(root.slug, mid.slug, leaf.slug)}
-                                    className="block py-0.5 text-xs text-slate-600 hover:text-[#A36783] dark:text-white/65"
+                                    className="block py-0.5 text-xs text-slate-600 hover:text-[#D4AF37] dark:text-white/65"
                                     onClick={() => setMobileOpen(false)}
                                   >
                                     {leaf.name}
@@ -319,7 +357,7 @@ export default function Layout() {
               )}
               <Link
                 to="/categories"
-                className="mt-3 block text-sm font-semibold text-[#A36783]"
+                className="mt-3 block text-sm font-semibold text-[#D4AF37]"
                 onClick={() => setMobileOpen(false)}
               >
                 Category overview →
@@ -350,12 +388,20 @@ export default function Layout() {
         </div>
       )}
 
-      <main className="relative z-10 min-h-[60vh] bg-white dark:!bg-white">
-        <Outlet />
+      <main className="relative z-10 min-h-[60vh] bg-[#FFFFFF] dark:!bg-[#FFFFFF]">
+        <AnimatePresence mode="wait">
+          <M.div
+            key={`${location.pathname}${location.search}`}
+            className="min-h-[60vh]"
+            {...pageMotion}
+          >
+            <Outlet />
+          </M.div>
+        </AnimatePresence>
       </main>
 
-      <footer className="footer-premium relative z-20 mt-24 overflow-hidden border-t border-white/10 bg-gradient-to-b from-[#0f2238] via-[#0c1b2e] to-[#081420] text-slate-300">
-        <div className="pointer-events-none absolute -right-32 top-20 h-72 w-72 rounded-full bg-[#A36783]/20 blur-[100px]" aria-hidden />
+      <footer className="footer-premium relative z-20 mt-24 overflow-hidden border-t border-white/10 bg-[#0F172A] text-slate-300">
+        <div className="pointer-events-none absolute -right-32 top-20 h-72 w-72 rounded-full bg-[#D4AF37]/20 blur-[100px]" aria-hidden />
         <div className="pointer-events-none absolute -left-24 bottom-40 h-56 w-56 rounded-full bg-[#4a6fa5]/15 blur-[90px]" aria-hidden />
         <div
           className="pointer-events-none absolute inset-0 opacity-[0.12]"
@@ -365,17 +411,33 @@ export default function Layout() {
           }}
           aria-hidden
         />
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#A36783]/70 to-transparent" aria-hidden />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#D4AF37]/70 to-transparent" aria-hidden />
 
         <div className="relative mx-auto grid max-w-6xl gap-12 px-4 py-14 sm:grid-cols-2 lg:grid-cols-4 lg:gap-10 md:px-6">
           <div className="sm:col-span-2 lg:col-span-1 lg:max-w-sm">
-            <Link to="/" className="group inline-flex items-center gap-3">
-              <span className="flex h-12 w-12 items-center justify-center rounded-full border border-[#A36783]/45 bg-[#132a43] text-xl font-black text-[#cf9bb4] shadow-lg shadow-black/20 transition group-hover:border-[#A36783]/70 group-hover:text-[#f0d4e0]">
-                {SITE_LOGO_LETTER}
+            <Link
+              to="/"
+              aria-label={`${SITE_NAME} — Home`}
+              className="nav-brand-lockup group inline-flex max-w-full items-center gap-3.5 rounded-xl py-0.5 outline-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0F172A] md:gap-4"
+            >
+              <span className="nav-brand-mark relative isolate flex h-16 min-w-[4rem] shrink-0 items-center justify-center overflow-hidden rounded-xl border border-white/25 bg-white px-3 py-2 md:h-[4.25rem] md:px-4 md:py-2.5">
+                <img
+                  src={SITE_LOGO_IMAGE}
+                  alt=""
+                  width={220}
+                  height={72}
+                  className="relative z-[1] h-11 w-auto max-h-[3.15rem] max-w-[12rem] object-contain object-center md:h-[3.35rem] md:max-h-[3.5rem] md:max-w-[14rem]"
+                  decoding="async"
+                />
               </span>
-              <span className="text-xl font-bold tracking-tight">
-                <span className="text-[#cf9bb4]">{SITE_WORDMARK_FIRST}</span>
-                <span className="text-white">{SITE_WORDMARK_SECOND}</span>
+              <span className="grid w-max max-w-full min-w-0 justify-items-stretch">
+                <span className="nav-brand-wordmark col-start-1 row-start-1 justify-self-start text-xl uppercase leading-none md:text-2xl">
+                  <span className="nav-brand-wordmark-text">
+                    {SITE_WORDMARK_FIRST}
+                    {SITE_WORDMARK_SECOND}
+                  </span>
+                </span>
+                <span className="nav-brand-wordmark-line col-start-1 row-start-2 min-w-0" aria-hidden />
               </span>
             </Link>
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-slate-400">
@@ -384,15 +446,15 @@ export default function Layout() {
             </p>
             <a
               href={`mailto:${SITE_EMAIL}`}
-              className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#e8c4d4] transition hover:text-white"
+              className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#FFFFFF] transition duration-300 ease-out hover:text-[#D4AF37]"
             >
-              <span className="h-px w-8 bg-[#A36783]/60" aria-hidden />
+              <span className="h-px w-8 bg-[#D4AF37]/60" aria-hidden />
               {SITE_EMAIL}
             </a>
           </div>
 
           <div className="lg:border-l lg:border-white/10 lg:pl-10">
-            <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#c9a0b5]">Shop</p>
+            <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#D4AF37]">Shop</p>
             <ul className="mt-5 space-y-3 text-[15px]">
               <li>
                 <Link className="footer-premium-link text-slate-300" to="/products">
@@ -423,7 +485,7 @@ export default function Layout() {
           </div>
 
           <div className="lg:border-l lg:border-white/10 lg:pl-10">
-            <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#c9a0b5]">Company</p>
+            <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#D4AF37]">Company</p>
             <ul className="mt-5 space-y-3 text-[15px]">
               <li>
                 <Link className="footer-premium-link text-slate-300" to="/about">
@@ -454,7 +516,7 @@ export default function Layout() {
           </div>
 
           <div className="lg:border-l lg:border-white/10 lg:pl-10">
-            <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#c9a0b5]">Legal</p>
+            <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#D4AF37]">Legal</p>
             <ul className="mt-5 space-y-3 text-[15px]">
               <li>
                 <Link className="footer-premium-link text-slate-300" to="/privacy-policy">
@@ -478,7 +540,7 @@ export default function Layout() {
         <div className="relative border-t border-white/10 bg-black/25 px-4 py-10 md:px-6">
           <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-3 md:gap-10 md:items-start">
             <div>
-              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#A36783]/90">Factories</p>
+              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#D4AF37]/90">Factories</p>
               <p className="mt-3 text-xs leading-relaxed text-slate-400">
                 <span className="font-semibold text-slate-300">Sialkot</span>
                 <br />
@@ -491,16 +553,16 @@ export default function Layout() {
               </p>
             </div>
             <div className="md:text-center">
-              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#A36783]/90">Production desk</p>
+              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#D4AF37]/90">Production desk</p>
               <a
                 href={`mailto:${SITE_EMAIL}`}
-                className="mt-3 inline-block text-base font-semibold text-[#f0d4e0] underline decoration-[#A36783]/50 underline-offset-4 transition hover:text-white hover:decoration-[#A36783]"
+                className="mt-3 inline-block text-base font-semibold text-[#FFFFFF] underline decoration-[#D4AF37]/50 underline-offset-4 transition hover:text-white hover:decoration-[#D4AF37]"
               >
                 {SITE_EMAIL}
               </a>
               <a
                 href={SITE_WHATSAPP_URL}
-                className="mt-3 block text-sm font-medium text-slate-400 transition hover:text-[#f0d4e0]"
+                className="mt-3 block text-sm font-medium text-slate-400 transition hover:text-[#FFFFFF]"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -508,7 +570,7 @@ export default function Layout() {
               </a>
             </div>
             <div className="md:text-right">
-              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#A36783]/90">{SITE_NAME}</p>
+              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#D4AF37]/90">{SITE_NAME}</p>
               <p className="mt-3 text-[11px] font-medium uppercase tracking-[0.25em] text-slate-500">
                 © {new Date().getFullYear()} All rights reserved
               </p>

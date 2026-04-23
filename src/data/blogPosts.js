@@ -1,4 +1,4 @@
-/** Blog slugs & titles — 4tex International */
+/** Blog slugs & titles — wasitex */
 export const blogPosts = [
   {
     id: '1',
@@ -7,7 +7,7 @@ export const blogPosts = [
     excerpt:
       'Explore how premium streetwear begins at the fiber level — from yarn selection to finished fabric ready for cut-and-sew production.',
     category: 'Textile Production',
-    author: '4tex International',
+    author: 'wasitex',
     publishedAt: '2024-01-15',
     image:
       'https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=800&q=80',
@@ -20,7 +20,7 @@ export const blogPosts = [
     excerpt:
       'Our QA protocols ensure every batch meets international standards and your brand specifications.',
     category: 'Quality Assurance',
-    author: '4tex International',
+    author: 'wasitex',
     publishedAt: '2024-01-20',
     image:
       'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=800&q=80',
@@ -33,7 +33,7 @@ export const blogPosts = [
     excerpt:
       'Cutting-edge QC checkpoints from inline inspection to final audit before export.',
     category: 'Quality Control',
-    author: '4tex International',
+    author: 'wasitex',
     publishedAt: '2024-01-25',
     image:
       'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
@@ -46,7 +46,7 @@ export const blogPosts = [
     excerpt:
       'How we move from sampling approval to bulk production without delays.',
     category: 'Order Processing',
-    author: '4tex International',
+    author: 'wasitex',
     publishedAt: '2024-02-01',
     image:
       'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80',
@@ -59,7 +59,7 @@ export const blogPosts = [
     excerpt:
       'Compliance with EU and global textile regulations for worry-free distribution.',
     category: 'International Services',
-    author: '4tex International',
+    author: 'wasitex',
     publishedAt: '2024-02-05',
     image:
       'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=800&q=80',
@@ -72,7 +72,7 @@ export const blogPosts = [
     excerpt:
       'Responsible sourcing, reduced waste, and longer-lasting garments for modern brands.',
     category: 'Textile Production',
-    author: '4tex International',
+    author: 'wasitex',
     publishedAt: '2024-02-10',
     image:
       'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&q=80',
@@ -85,7 +85,7 @@ export const blogPosts = [
     excerpt:
       'Lab testing, shrinkage, colour fastness, and certification documentation for B2B buyers.',
     category: 'Quality Control',
-    author: '4tex International',
+    author: 'wasitex',
     publishedAt: '2024-02-15',
     image:
       'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
@@ -98,7 +98,7 @@ export const blogPosts = [
     excerpt:
       'Private-label workflows from tech packs to packed cartons ready for EU retail.',
     category: 'Order Processing',
-    author: '4tex International',
+    author: 'wasitex',
     publishedAt: '2024-02-20',
     image:
       'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80',
@@ -111,7 +111,7 @@ export const blogPosts = [
     excerpt:
       'Commercial invoices, packing lists, and customs-ready paperwork for European hubs.',
     category: 'International Services',
-    author: '4tex International',
+    author: 'wasitex',
     publishedAt: '2024-02-25',
     image:
       'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&q=80',
@@ -124,7 +124,7 @@ export const blogPosts = [
     excerpt:
       'Pantone matching, garment dye, and wash treatments for premium streetwear aesthetics.',
     category: 'Textile Production',
-    author: '4tex International',
+    author: 'wasitex',
     publishedAt: '2024-03-01',
     image:
       'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
@@ -137,7 +137,7 @@ export const blogPosts = [
     excerpt:
       'AQL sampling, measurement specs, and on-site QC before containers leave the mill.',
     category: 'Quality Control',
-    author: '4tex International',
+    author: 'wasitex',
     publishedAt: '2024-03-05',
     image:
       'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=800&q=80',
@@ -150,7 +150,7 @@ export const blogPosts = [
     excerpt:
       'Scaling from hundreds to thousands of units while tracking every SKU and size curve.',
     category: 'Order Processing',
-    author: '4tex International',
+    author: 'wasitex',
     publishedAt: '2024-03-10',
     image:
       'https://images.unsplash.com/photo-1445205170230-053b83016050?w=800&q=80',
@@ -163,7 +163,7 @@ export const blogPosts = [
     excerpt:
       'Navigating tariffs, origin rules, and textile quotas for EU-focused brands.',
     category: 'International Services',
-    author: '4tex International',
+    author: 'wasitex',
     publishedAt: '2024-03-15',
     image:
       'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80',
@@ -176,7 +176,7 @@ export const blogPosts = [
     excerpt:
       'Line balancing, marker efficiency, and lead-time reduction without sacrificing quality.',
     category: 'Textile Production',
-    author: '4tex International',
+    author: 'wasitex',
     publishedAt: '2024-03-20',
     image:
       'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=80',
@@ -189,7 +189,7 @@ export const blogPosts = [
     excerpt:
       'Dedicated production coordinators and transparent updates from sample to delivery.',
     category: 'Order Processing',
-    author: '4tex International',
+    author: 'wasitex',
     publishedAt: '2024-03-25',
     image:
       'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80',

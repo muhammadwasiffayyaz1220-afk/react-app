@@ -49,7 +49,7 @@ export default function OrderProcess() {
         title="Order process"
         description="How we move from first enquiry to delivered cartons — built for wholesale and OEM programmes."
       >
-        <PageHeroBreadcrumb delay={2} items={[{ label: 'Home', to: '/' }, { label: 'Order process' }]} />
+        <PageHeroBreadcrumb items={[{ label: 'Home', to: '/' }, { label: 'Order process' }]} />
       </PageHero>
 
       <section className="border-t border-slate-100 py-12 md:py-16 dark:border-slate-800">
@@ -57,7 +57,7 @@ export default function OrderProcess() {
           <ol className="space-y-10 text-left">
             {steps.map((s) => (
               <li key={s.n} className="flex gap-5 border-b border-slate-100 pb-10 last:border-0 dark:border-slate-800">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#A36783] text-lg font-bold text-white shadow-md shadow-[#A36783]/25">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#D4AF37] text-lg font-bold text-[#0F172A] shadow-md shadow-[#D4AF37]/25">
                   {s.n}
                 </span>
                 <div>
@@ -74,8 +74,8 @@ export default function OrderProcess() {
               Our team can walk you through MOQs, sampling costs, and lead times for your programme.
             </p>
             <p className="mt-4 text-sm">
-              <a href="mailto:info@4texinternational.com" className="font-semibold text-[#A36783] hover:underline">
-                info@4texinternational.com
+              <a href="mailto:info@wasitex.com" className="font-semibold text-[#D4AF37] hover:underline">
+                info@wasitex.com
               </a>
             </p>
             <p className="mt-4 text-xs leading-relaxed text-slate-500 dark:text-slate-500">
@@ -85,7 +85,7 @@ export default function OrderProcess() {
             </p>
             <Link
               to="/contact"
-              className="mt-6 inline-block text-sm font-bold uppercase tracking-wider text-[#A36783] hover:underline"
+              className="mt-6 inline-block text-sm font-bold uppercase tracking-wider text-[#D4AF37] hover:underline"
             >
               Contact us →
             </Link>

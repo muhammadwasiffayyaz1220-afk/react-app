@@ -1,15 +1,12 @@
-/** Global brand & contact — single place to update name, email, WhatsApp. */
-export const SITE_NAME = '4tex International'
-export const SITE_WORDMARK_FIRST = '4tex'
-export const SITE_WORDMARK_SECOND = ' International'
-
-export const SITE_EMAIL = 'info@4texinternational.com'
-export const SITE_DOMAIN = '4texinternational.com'
-export const SITE_URL = `https://${SITE_DOMAIN}`
-
-export const SITE_WHATSAPP_E164 = '923191553947'
-export const SITE_WHATSAPP_DISPLAY = '+92 319 1553947'
-export const SITE_WHATSAPP_URL = `https://wa.me/${SITE_WHATSAPP_E164}`
-
-/** Circular mark in header, footer, product cards */
+export const SITE_NAME = 'WASITEX'
 export const SITE_LOGO_LETTER = '4'
+export const SITE_LOGO_IMAGE = '/images/brand/wasitex-logo.png'
+export const SITE_WORDMARK_FIRST = 'WASITEX'
+export const SITE_WORDMARK_SECOND = ''
+
+export const SITE_DOMAIN = 'wasitex.com'
+export const SITE_URL = `https://${SITE_DOMAIN}`
+export const SITE_EMAIL = `info@${SITE_DOMAIN}`
+
+export const SITE_WHATSAPP_DISPLAY = '+923191553947'
+export const SITE_WHATSAPP_URL = 'https://wa.me/923191553947'

@@ -13,7 +13,7 @@ export default function Blog() {
         title="Blog"
         description="Manufacturing, quality, and operations — insights for brands sourcing from Pakistan."
       >
-        <PageHeroBreadcrumb delay={2} items={[{ label: 'Home', to: '/' }, { label: 'Blog' }]} />
+        <PageHeroBreadcrumb items={[{ label: 'Home', to: '/' }, { label: 'Blog' }]} />
       </PageHero>
 
       <section className="border-t border-slate-100 py-16 md:py-24 dark:border-slate-800">
@@ -23,7 +23,7 @@ export default function Blog() {
               <li key={post.slug}>
                 <Link
                   to={`/blog/${post.slug}`}
-                  className="group block overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition hover:border-[#A36783]/40 hover:shadow-lg dark:border-slate-700 dark:bg-slate-900/40"
+                  className="group block overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition hover:border-[#D4AF37]/40 hover:shadow-lg dark:border-slate-700 dark:bg-slate-900/40"
                 >
                   <div className="aspect-[16/10] overflow-hidden">
                     <img
@@ -34,8 +34,8 @@ export default function Blog() {
                     />
                   </div>
                   <div className="p-5 text-left">
-                    <p className="text-xs font-bold uppercase tracking-wider text-[#A36783]">{post.category}</p>
-                    <h2 className="mt-2 font-bold text-slate-900 group-hover:text-[#A36783] dark:text-white dark:group-hover:text-[#c9a0b5]">
+                    <p className="text-xs font-bold uppercase tracking-wider text-[#D4AF37]">{post.category}</p>
+                    <h2 className="mt-2 font-bold text-slate-900 group-hover:text-[#D4AF37] dark:text-white dark:group-hover:text-[#D4AF37]">
                       {post.title}
                     </h2>
                     <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">

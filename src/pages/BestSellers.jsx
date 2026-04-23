@@ -14,7 +14,7 @@ export default function BestSellers() {
         title="Best sellers"
         description="Top-moving silhouettes for B2B programmes — same filters as the main catalogue."
       >
-        <PageHeroBreadcrumb delay={2} items={[{ label: 'Home', to: '/' }, { label: 'Best sellers' }]} />
+        <PageHeroBreadcrumb items={[{ label: 'Home', to: '/' }, { label: 'Best sellers' }]} />
       </PageHero>
 
       <section className="border-t border-slate-100 py-10 md:py-14 dark:border-slate-800">
@@ -22,7 +22,7 @@ export default function BestSellers() {
           <CatalogSidebar variant="products" />
           <div className="min-w-0">
             <div className="border-b border-slate-100 pb-6 dark:border-slate-800">
-              <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#A36783]">Curated</p>
+              <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#D4AF37]">Curated</p>
               <p className="mt-1 text-2xl font-bold text-slate-900 dark:text-white">{list.length} best-selling styles</p>
             </div>
             <div className="mt-8 grid grid-cols-2 gap-6 lg:grid-cols-4">
