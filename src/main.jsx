@@ -5,12 +5,17 @@ import './index.css'
 import App from './App.jsx'
 
 const isGitHubPagesHost = window.location.hostname.endsWith('github.io')
-const Router = isGitHubPagesHost ? HashRouter : BrowserRouter
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Router basename={import.meta.env.BASE_URL}>
-      <App />
-    </Router>
+    {isGitHubPagesHost ? (
+      <HashRouter>
+        <App />
+      </HashRouter>
+    ) : (
+      <BrowserRouter basename={import.meta.env.BASE_URL}>
+        <App />
+      </BrowserRouter>
+    )}
   </StrictMode>,
 )
